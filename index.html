@@ -14,15 +14,12 @@
 
   <script>
     // Demo-only values — replace before production. See README.md.
-    const AUTH_SYSTEM_URL = "https://onboarding.test.gcw.ng.telekom.net/";
-    const CALLBACK_BASE_URL = "https://onboarding.test.gcw.ng.telekom.net/identification-redirect";
+    const IDENTIFICATION_ENTRY_URL = "https://onboarding.test.gcw.ng.telekom.net/identification-redirect";
     const DEFAULT_ASSIGNMENT_ID = "demo-assignment-123"; // PLACEHOLDER: used when no ?assignment_id= is given
     const assignmentId = new URLSearchParams(window.location.search).get("assignment_id") || DEFAULT_ASSIGNMENT_ID;
 
     document.getElementById("start-btn").addEventListener("click", () => {
-      const callbackUrl = `${CALLBACK_BASE_URL}/${assignmentId}`;
-      const redirectUrl = `${AUTH_SYSTEM_URL}?callback=${encodeURIComponent(callbackUrl)}`;
-      window.location.href = redirectUrl;
+      window.location.href = `${IDENTIFICATION_ENTRY_URL}/${assignmentId}`;
     });
   </script>
 </body>
