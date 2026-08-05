@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Identification Callback Received</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="card">
+    <h1>Callback Received</h1>
+    <p>The authentication system redirected back to this app. Here's what came through:</p>
+    <div class="details" id="details"></div>
+  </div>
+
+  <script>
+    const pathParts = window.location.pathname.split("/").filter(Boolean);
+    // Expecting: identification-redirect/<assignment_id>
+    const assignmentId = pathParts.length > 1 ? pathParts[pathParts.length - 1] : "(none in path)";
+
+    const params = new URLSearchParams(window.location.search);
+    const details = document.getElementById("details");
+
+    const assignmentField = document.createElement("div");
+    assignmentField.className = "field";
+    assignmentField.innerHTML = `<strong>assignment_id:</strong> ${assignmentId}`;
+    details.appendChild(assignmentField);
+
+    if ([...params.keys()].length === 0) {
+      const none = document.createElement("div");
+      none.className = "field";
+      none.textContent = "No query params received.";
+      details.appendChild(none);
+    } else {
+      params.forEach((value, key) => {
+        const field = document.createElement("div");
+        field.className = "field";
+        field.innerHTML = `<strong>${key}:</strong> ${value}`;
+        details.appendChild(field);
+      });
+    }
+  </script>
+</body>
+</html>

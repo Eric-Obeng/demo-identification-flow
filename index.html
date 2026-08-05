@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Identification Flow Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="card">
+    <h1>Demo Text</h1>
+    <p>Click the button below to start the identification/authentication flow. This will do a full-page redirect to the external authentication system.</p>
+    <button id="start-btn">Start Identification</button>
+  </div>
+
+  <script>
+    // Demo-only values — replace before production. See README.md.
+    const AUTH_SYSTEM_URL = "https://onboarding.test.gcw.ng.telekom.net/";
+    const CALLBACK_BASE_URL = "https://onboarding.test.gcw.ng.telekom.net/identification-redirect";
+    const DEMO_ASSIGNMENT_ID = "demo-assignment-123"; // PLACEHOLDER: hardcoded for demo only
+
+    document.getElementById("start-btn").addEventListener("click", () => {
+      const callbackUrl = `${CALLBACK_BASE_URL}/${DEMO_ASSIGNMENT_ID}`;
+      const redirectUrl = `${AUTH_SYSTEM_URL}?callback=${encodeURIComponent(callbackUrl)}`;
+      window.location.href = redirectUrl;
+    });
+  </script>
+</body>
+</html>
